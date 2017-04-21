@@ -1,0 +1,11 @@
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\bin\Debug\Mine Craft Adminitrator.exe.config
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\bin\Debug\Mine Craft Adminitrator.exe
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\bin\Debug\Mine Craft Adminitrator.pdb
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine Craft Adminitrator.csprojResolveAssemblyReference.cache
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.Properties.Resources.resources
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine Craft Adminitrator.csproj.GenerateResource.Cache
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine Craft Adminitrator.exe
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine Craft Adminitrator.pdb
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.Login.resources
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.MainForm.resources
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\bin\Debug\MySql.Data.dll
