@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_username = new System.Windows.Forms.TextBox();
+            this.tb_password = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -46,22 +46,22 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "User Name";
             // 
-            // textBox1
+            // tb_username
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(149, 47);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(195, 29);
-            this.textBox1.TabIndex = 1;
+            this.tb_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_username.Location = new System.Drawing.Point(149, 47);
+            this.tb_username.Name = "tb_username";
+            this.tb_username.Size = new System.Drawing.Size(195, 29);
+            this.tb_username.TabIndex = 1;
             // 
-            // textBox2
+            // tb_password
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(149, 108);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = 'X';
-            this.textBox2.Size = new System.Drawing.Size(195, 29);
-            this.textBox2.TabIndex = 3;
+            this.tb_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_password.Location = new System.Drawing.Point(149, 108);
+            this.tb_password.Name = "tb_password";
+            this.tb_password.PasswordChar = 'X';
+            this.tb_password.Size = new System.Drawing.Size(195, 29);
+            this.tb_password.TabIndex = 3;
             // 
             // label2
             // 
@@ -101,9 +101,9 @@
             this.ClientSize = new System.Drawing.Size(424, 247);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tb_password);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tb_username);
             this.Controls.Add(this.label1);
             this.Name = "Login";
             this.Text = "Login";
@@ -116,8 +116,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tb_username;
+        private System.Windows.Forms.TextBox tb_password;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnCancel;

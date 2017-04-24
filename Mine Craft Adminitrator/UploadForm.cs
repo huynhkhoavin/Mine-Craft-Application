@@ -10,24 +10,17 @@ using System.Windows.Forms;
 
 namespace Mine_Craft_Adminitrator
 {
-    public partial class MainForm : Form
+    public partial class UploadForm : Form
     {
-        public MainForm()
+        public UploadForm()
         {
             InitializeComponent();
         }
 
-        public void upload_Item_Click(Object sender, EventArgs e)
+        private void UploadForm_Load(object sender, EventArgs e)
         {
 
         }
-        public void verify_Item_Click(Object sender, EventArgs e)
-        {
 
-        }
-        public void Log_Out_Click(Object sender, EventArgs e)
-        {
-
-        }
     }
 }
