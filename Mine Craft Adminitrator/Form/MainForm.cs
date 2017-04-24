@@ -12,14 +12,21 @@ namespace Mine_Craft_Adminitrator
 {
     public partial class MainForm : Form
     {
+        public Form loginForm;
         public MainForm()
         {
             InitializeComponent();
+            CenterToScreen();
         }
 
         public void upload_Item_Click(Object sender, EventArgs e)
         {
+            UploadForm uploadForm = new UploadForm();
 
+            //set previous Form for Back Button Of Upload Form
+            uploadForm.PreviousForm = this;
+            this.Hide();
+            uploadForm.Show();
         }
         public void verify_Item_Click(Object sender, EventArgs e)
         {
@@ -27,7 +34,8 @@ namespace Mine_Craft_Adminitrator
         }
         public void Log_Out_Click(Object sender, EventArgs e)
         {
-
+            this.Hide();
+            loginForm.Show();
         }
     }
 }

@@ -40,7 +40,8 @@ namespace Mine_Craft_Adminitrator
         private void btnClick(object sender, EventArgs e)
         {
             if (CheckLogin(tb_username.Text, Utils.Encript.MD5Hash(tb_password.Text))){
-                ItemForm mainform = new ItemForm();
+                MainForm mainform = new MainForm();
+                mainform.loginForm = this;
                 mainform.Show();
                 this.Hide();
             }
