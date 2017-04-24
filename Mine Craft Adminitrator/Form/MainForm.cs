@@ -30,7 +30,10 @@ namespace Mine_Craft_Adminitrator
         }
         public void verify_Item_Click(Object sender, EventArgs e)
         {
-
+            ListUploadItemForm listItemForm = new ListUploadItemForm();
+            listItemForm.PreviousForm = this;
+            this.Hide();
+            listItemForm.Show();
         }
         public void Log_Out_Click(Object sender, EventArgs e)
         {

@@ -57,11 +57,11 @@
     <Compile Include="DataObject\ItemType.cs" />
     <Compile Include="DataObject\MyStruct.cs" />
     <Compile Include="DataObject\UploadItem.cs" />
-    <Compile Include="Form\ItemForm.cs">
+    <Compile Include="Form\ListUploadItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\ItemForm.Designer.cs">
-      <DependentUpon>ItemForm.cs</DependentUpon>
+    <Compile Include="Form\ListUploadItemForm.Designer.cs">
+      <DependentUpon>ListUploadItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Login.cs">
       <SubType>Form</SubType>
@@ -75,6 +75,12 @@
     <Compile Include="Form\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\ItemDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\ItemDetail.Designer.cs">
+      <DependentUpon>ItemDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Form\UploadForm.cs">
@@ -84,14 +90,17 @@
       <DependentUpon>UploadForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\Encript.cs" />
-    <EmbeddedResource Include="Form\ItemForm.resx">
-      <DependentUpon>ItemForm.cs</DependentUpon>
+    <EmbeddedResource Include="Form\ListUploadItemForm.resx">
+      <DependentUpon>ListUploadItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ItemDetail.resx">
+      <DependentUpon>ItemDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

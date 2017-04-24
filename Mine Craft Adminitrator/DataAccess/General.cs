@@ -75,15 +75,77 @@ namespace Mine_Craft_Adminitrator.DataAccess
 
       
             cmd.Connection.Open();
+
             MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
             ErrorCode errorCode = new ErrorCode();
+
             while (dr.Read())
             {
                 errorCode.ResponseCode = Convert.ToInt32(dr["response_code"]);
                 errorCode.Meaning = Convert.ToString(dr["meaning"]);
             }
+
             dr.Close();
+
             return errorCode;
+        }
+        public static List<UploadItem> getAllUploadItem()
+        {
+            MySqlCommand cmd = new MySqlCommand("get_all_upload_item", new MySqlConnection(GetConnectionString()));
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Connection.Open();
+
+            MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            List<UploadItem> listUploadItem = new List<UploadItem>();
+
+            while (dr.Read())
+            {
+                UploadItem uploadItem = new UploadItem();
+
+                uploadItem.item_id = Convert.ToInt32(dr["item_id"]);
+
+                uploadItem.type_id = Convert.ToInt32(dr["type_id"]);
+
+                uploadItem.category_id = Convert.ToInt32(dr["category_id"]);
+
+                uploadItem.item_name = Convert.ToString(dr["item_name"]);
+
+                uploadItem.file_url = Convert.ToString(dr["file_url"]);
+
+                uploadItem.image_url = Convert.ToString(dr["image_url"]);
+
+                uploadItem.thumb_url = Convert.ToString(dr["thumb_url"]);
+
+                uploadItem.author_name = Convert.ToString(dr["author_name"]);
+
+                uploadItem.version = Convert.ToString(dr["version"]);
+
+                uploadItem.size = Convert.ToString(dr["size"]);
+
+                uploadItem.description = Convert.ToString(dr["description"]);
+
+                uploadItem.short_description = Convert.ToString(dr["short_description"]);
+
+                uploadItem.hot_priority = Convert.ToString(dr["hot_priority"]);
+
+                uploadItem.download_count = Convert.ToInt32(dr["download_count"]);
+
+                uploadItem.is_verify = Convert.ToInt32(dr["is_verify"]);
+
+                System.Console.WriteLine(Convert.ToString(dr["create_time"]));
+                listUploadItem.Add(uploadItem);
+            }
+
+            dr.Close();
+
+            return listUploadItem;
+        }
+        public static void DateTimeConvert(string datetimeString)
+        {
+
         }
     }
 }

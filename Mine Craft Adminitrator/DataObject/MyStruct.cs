@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace Mine_Craft_Adminitrator.DataObject
 {
-    class MyStruct
+    class DisplayItem
     {
+        public int SequenceNumber { get; set; }
+        public string Type { get; set; }
         public string Name { get; set; }
-        public string Adres { get; set; }
-
-
-        public MyStruct(string name, string adress)
+        
+        public DisplayItem(int sequence, string type, string name)
         {
-            Name = name;
-            Adres = adress;
+            this.SequenceNumber = sequence;
+            this.Type = type;
+            this.Name = name;
         }
     }
 }

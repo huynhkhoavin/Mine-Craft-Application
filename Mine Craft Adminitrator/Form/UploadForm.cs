@@ -75,14 +75,15 @@ namespace Mine_Craft_Adminitrator
 
             //check info condition
             if (uploadItem.item_name == ""
-                || uploadItem.author_name == ""
-                || uploadItem.version == "" 
-                || uploadItem.short_description == ""
-                || uploadItem.description == ""
-                || uploadItem.image_url == ""
-                || uploadItem.file_url == ""
-                || uploadItem.video_code == ""
-                || uploadItem.hot_priority == "")
+                //|| uploadItem.author_name == ""
+                //|| uploadItem.version == "" 
+                //|| uploadItem.short_description == ""
+                //|| uploadItem.description == ""
+                //|| uploadItem.image_url == ""
+                //|| uploadItem.file_url == ""
+                //|| uploadItem.video_code == ""
+                //|| uploadItem.hot_priority == ""
+                )
             {
                 // Displays the MessageBox.
 
