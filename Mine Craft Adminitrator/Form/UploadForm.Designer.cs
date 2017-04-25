@@ -55,8 +55,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.tb_hotPriority = new System.Windows.Forms.TextBox();
             this.btn_upload = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -110,6 +110,7 @@
             this.cb_itemType.Name = "cb_itemType";
             this.cb_itemType.Size = new System.Drawing.Size(231, 21);
             this.cb_itemType.TabIndex = 1;
+            this.cb_itemType.SelectedIndexChanged += new System.EventHandler(this.cb_itemType_SelectedIndexChanged);
             // 
             // tb_itemName
             // 
@@ -117,6 +118,7 @@
             this.tb_itemName.Name = "tb_itemName";
             this.tb_itemName.Size = new System.Drawing.Size(231, 20);
             this.tb_itemName.TabIndex = 2;
+            this.tb_itemName.Text = "adsads";
             // 
             // tb_author
             // 
@@ -124,6 +126,7 @@
             this.tb_author.Name = "tb_author";
             this.tb_author.Size = new System.Drawing.Size(231, 20);
             this.tb_author.TabIndex = 2;
+            this.tb_author.Text = "asdads";
             // 
             // tb_version
             // 
@@ -131,6 +134,7 @@
             this.tb_version.Name = "tb_version";
             this.tb_version.Size = new System.Drawing.Size(231, 20);
             this.tb_version.TabIndex = 2;
+            this.tb_version.Text = "asdads";
             // 
             // label6
             // 
@@ -148,6 +152,7 @@
             this.tb_size.Name = "tb_size";
             this.tb_size.Size = new System.Drawing.Size(231, 20);
             this.tb_size.TabIndex = 2;
+            this.tb_size.Text = "asdasd";
             // 
             // label7
             // 
@@ -187,7 +192,7 @@
             this.rt_short_desc.Name = "rt_short_desc";
             this.rt_short_desc.Size = new System.Drawing.Size(231, 72);
             this.rt_short_desc.TabIndex = 3;
-            this.rt_short_desc.Text = "";
+            this.rt_short_desc.Text = "asdasd";
             // 
             // label9
             // 
@@ -205,7 +210,7 @@
             this.rt_long_desc.Name = "rt_long_desc";
             this.rt_long_desc.Size = new System.Drawing.Size(231, 78);
             this.rt_long_desc.TabIndex = 3;
-            this.rt_long_desc.Text = "";
+            this.rt_long_desc.Text = "asdasdadwd";
             // 
             // label10
             // 
@@ -279,6 +284,7 @@
             this.tb_videoCode.Name = "tb_videoCode";
             this.tb_videoCode.Size = new System.Drawing.Size(231, 20);
             this.tb_videoCode.TabIndex = 2;
+            this.tb_videoCode.Text = "asdads";
             // 
             // label13
             // 
@@ -296,30 +302,19 @@
             this.tb_hotPriority.Name = "tb_hotPriority";
             this.tb_hotPriority.Size = new System.Drawing.Size(231, 20);
             this.tb_hotPriority.TabIndex = 2;
+            this.tb_hotPriority.Text = "asdasd";
             // 
             // btn_upload
             // 
             this.btn_upload.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_upload.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.btn_upload.Location = new System.Drawing.Point(661, 517);
+            this.btn_upload.Location = new System.Drawing.Point(532, 517);
             this.btn_upload.Name = "btn_upload";
             this.btn_upload.Size = new System.Drawing.Size(103, 43);
             this.btn_upload.TabIndex = 5;
             this.btn_upload.Text = "Upload";
             this.btn_upload.UseVisualStyleBackColor = true;
             this.btn_upload.Click += new System.EventHandler(this.btn_upload_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.btnBack.Location = new System.Drawing.Point(789, 517);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(103, 43);
-            this.btnBack.TabIndex = 5;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btn_Back);
             // 
             // label2
             // 
@@ -332,12 +327,24 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Upload Item";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.button1.Location = new System.Drawing.Point(789, 517);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 43);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btn_Back);
+            // 
             // UploadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 681);
-            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_upload);
             this.Controls.Add(this.btn_fileBrowse);
             this.Controls.Add(this.btn_imageBrowse);
@@ -403,7 +410,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tb_hotPriority;
         private System.Windows.Forms.Button btn_upload;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

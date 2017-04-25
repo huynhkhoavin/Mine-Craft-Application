@@ -90,6 +90,7 @@
       <DependentUpon>UploadForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\Encript.cs" />
+    <Compile Include="Utils\Utilities.cs" />
     <EmbeddedResource Include="Form\ListUploadItemForm.resx">
       <DependentUpon>ListUploadItemForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -31,9 +31,9 @@
             this.gridView = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dt_from = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dt_to = new System.Windows.Forms.DateTimePicker();
             this.btnShow = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
@@ -68,12 +68,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "From";
             // 
-            // dateTimePicker1
+            // dt_from
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(87, 73);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 3;
+            this.dt_from.Location = new System.Drawing.Point(87, 73);
+            this.dt_from.Name = "dt_from";
+            this.dt_from.Size = new System.Drawing.Size(200, 20);
+            this.dt_from.TabIndex = 3;
             // 
             // label3
             // 
@@ -85,12 +85,12 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "To";
             // 
-            // dateTimePicker2
+            // dt_to
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(87, 113);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 3;
+            this.dt_to.Location = new System.Drawing.Point(87, 113);
+            this.dt_to.Name = "dt_to";
+            this.dt_to.Size = new System.Drawing.Size(200, 20);
+            this.dt_to.TabIndex = 3;
             // 
             // btnShow
             // 
@@ -123,9 +123,9 @@
             this.ClientSize = new System.Drawing.Size(679, 415);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnShow);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dt_to);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dt_from);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gridView);
@@ -143,9 +143,9 @@
         private System.Windows.Forms.DataGridView gridView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dt_from;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dt_to;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Button btnBack;
     }

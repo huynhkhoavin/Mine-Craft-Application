@@ -57,6 +57,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -69,17 +70,19 @@
             this.btnBack.TabIndex = 34;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btn_upload
             // 
             this.btn_upload.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_upload.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.btn_upload.Location = new System.Drawing.Point(664, 564);
+            this.btn_upload.Location = new System.Drawing.Point(522, 564);
             this.btn_upload.Name = "btn_upload";
             this.btn_upload.Size = new System.Drawing.Size(103, 43);
             this.btn_upload.TabIndex = 33;
-            this.btn_upload.Text = "Upload";
+            this.btn_upload.Text = "Verify";
             this.btn_upload.UseVisualStyleBackColor = true;
+            this.btn_upload.Click += new System.EventHandler(this.btn_upload_Click);
             // 
             // btn_fileBrowse
             // 
@@ -145,7 +148,6 @@
             // 
             // tb_fileUrl
             // 
-            this.tb_fileUrl.Enabled = false;
             this.tb_fileUrl.Location = new System.Drawing.Point(664, 342);
             this.tb_fileUrl.Name = "tb_fileUrl";
             this.tb_fileUrl.Size = new System.Drawing.Size(231, 20);
@@ -153,7 +155,6 @@
             // 
             // tb_imageUrl
             // 
-            this.tb_imageUrl.Enabled = false;
             this.tb_imageUrl.Location = new System.Drawing.Point(664, 278);
             this.tb_imageUrl.Name = "tb_imageUrl";
             this.tb_imageUrl.Size = new System.Drawing.Size(231, 20);
@@ -328,12 +329,24 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Item Type";
             // 
+            // btn_delete
+            // 
+            this.btn_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_delete.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btn_delete.Location = new System.Drawing.Point(654, 564);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(103, 43);
+            this.btn_delete.TabIndex = 33;
+            this.btn_delete.Text = "Delete";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            // 
             // ItemDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 681);
             this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.btn_upload);
             this.Controls.Add(this.btn_fileBrowse);
             this.Controls.Add(this.btn_imageBrowse);
@@ -364,6 +377,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ItemDetail";
             this.Text = "ItemDetail";
+            this.Load += new System.EventHandler(this.ItemDetail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +414,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_delete;
     }
 }

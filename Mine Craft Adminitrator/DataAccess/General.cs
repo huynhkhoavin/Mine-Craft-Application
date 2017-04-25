@@ -90,10 +90,13 @@ namespace Mine_Craft_Adminitrator.DataAccess
 
             return errorCode;
         }
-        public static List<UploadItem> getAllUploadItem()
+        public static List<UploadItem> getAllUploadItem(string from, string to)
         {
             MySqlCommand cmd = new MySqlCommand("get_all_upload_item", new MySqlConnection(GetConnectionString()));
             cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new MySqlParameter("p_start_datetime", from));
+            cmd.Parameters.Add(new MySqlParameter("p_end_datetime", to));
 
             cmd.Connection.Open();
 
@@ -132,6 +135,8 @@ namespace Mine_Craft_Adminitrator.DataAccess
                 uploadItem.hot_priority = Convert.ToString(dr["hot_priority"]);
 
                 uploadItem.download_count = Convert.ToInt32(dr["download_count"]);
+
+                uploadItem.video_code = Convert.ToString(dr["video_code"]);
 
                 uploadItem.is_verify = Convert.ToInt32(dr["is_verify"]);
 

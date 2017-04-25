@@ -17,23 +17,28 @@ namespace Mine_Craft_Adminitrator
         List<ItemType> itemTypeList = General.getItemType();
         List<Category> categoryList = General.getCategory();
         public Form PreviousForm;
+
+        BindingSource source = new BindingSource();
+        List<DisplayItem> displayItems = new List<DisplayItem>();
+
+        List<UploadItem> list;
+
+        bool isAddButton = false;
         public ListUploadItemForm()
         {
             InitializeComponent();
-            CenterToScreen();
-            
+            CenterToScreen();   
         }
-
         private void ItemForm_Load(object sender, EventArgs e)
         {
-            
         }
-
         private void btnShow_Click(object sender, EventArgs e)
         {
-            var source = new BindingSource();
-            List<UploadItem> list = General.getAllUploadItem();
-            List<DisplayItem> displayItems = new List<DisplayItem>();
+            string fromDateTime = dt_from.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            string toDateTime = dt_to.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            
+            list = General.getAllUploadItem(fromDateTime,toDateTime);
+            
             int i = 1;
             foreach(UploadItem uploadItem in list)
             {
@@ -45,7 +50,14 @@ namespace Mine_Craft_Adminitrator
             source.DataSource = displayItems;
             gridView.DataSource = source;
 
-
+            if (isAddButton == false)
+            {
+                addColumnButton();
+                isAddButton = true;
+            }
+        }
+        private void addColumnButton()
+        {
             DataGridViewButtonColumn buttonView = new DataGridViewButtonColumn();
             {
                 buttonView.HeaderText = "Sales";
@@ -71,19 +83,32 @@ namespace Mine_Craft_Adminitrator
 
             }
             gridView.Columns.Add(buttonDelete);
-
-
-         
         }
-
         private void gridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             System.Console.WriteLine("Position:(" + gridView.CurrentCell.RowIndex.ToString() + " ," + gridView.CurrentCell.ColumnIndex.ToString()+")");
+
+            switch (gridView.CurrentCell.ColumnIndex)
+            {
+                case 3:
+                    {
+                        ItemDetail itemDetail = new ItemDetail();
+                        itemDetail.PreviousForm = this;
+                        itemDetail.Item = list[gridView.CurrentCell.RowIndex];
+                        this.Hide();
+                        itemDetail.Show();
+                        break;
+                    }
+                case 4:
+                    {
+                        break;
+                    }
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             if (PreviousForm!=null)
             {
                 PreviousForm.Show();

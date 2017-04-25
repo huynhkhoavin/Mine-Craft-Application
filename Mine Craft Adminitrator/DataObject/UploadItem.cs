@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mine_Craft_Adminitrator.DataObject
 {
-    class UploadItem
+    public class UploadItem
     {
         public int item_id { get; set; }
         public int type_id { get; set; }
