@@ -60,9 +60,9 @@ namespace Mine_Craft_Adminitrator.DataAccess
             cmd.Parameters.Add(new MySqlParameter("p_type_id", uploadItem.type_id));
             cmd.Parameters.Add(new MySqlParameter("p_category_id", uploadItem.category_id));
             cmd.Parameters.Add(new MySqlParameter("p_item_name", uploadItem.item_name));
-            cmd.Parameters.Add(new MySqlParameter("p_file_url", uploadItem.file_url));
-            cmd.Parameters.Add(new MySqlParameter("p_image_url", uploadItem.image_url));
-            cmd.Parameters.Add(new MySqlParameter("p_thumb_url", uploadItem.thumb_url));
+            cmd.Parameters.Add(new MySqlParameter("p_file_url", Utils.Constain.SERVER_BASE_URL+uploadItem.item_name + Utils.Utilities.GetExtension(uploadItem.file_url)));
+            cmd.Parameters.Add(new MySqlParameter("p_image_url", Utils.Constain.SERVER_BASE_URL  + uploadItem.item_name + Utils.Utilities.GetExtension(uploadItem.image_url)));
+            cmd.Parameters.Add(new MySqlParameter("p_thumb_url", Utils.Constain.SERVER_BASE_URL  + uploadItem.item_name + Utils.Utilities.GetExtension(uploadItem.image_url)));
             cmd.Parameters.Add(new MySqlParameter("p_author_name", uploadItem.author_name));
             cmd.Parameters.Add(new MySqlParameter("p_version", uploadItem.version));
             cmd.Parameters.Add(new MySqlParameter("p_size", uploadItem.size));
@@ -140,7 +140,10 @@ namespace Mine_Craft_Adminitrator.DataAccess
 
                 uploadItem.is_verify = Convert.ToInt32(dr["is_verify"]);
 
-                System.Console.WriteLine(Convert.ToString(dr["create_time"]));
+                DateTime addedDate = (DateTime)dr["create_time"];
+
+                uploadItem.create_time = addedDate;
+                //Convert DateTime
                 listUploadItem.Add(uploadItem);
             }
 
@@ -151,6 +154,57 @@ namespace Mine_Craft_Adminitrator.DataAccess
         public static void DateTimeConvert(string datetimeString)
         {
 
+        }
+
+        public static ErrorCode VerifyUploadItem(int item_id)
+        {
+            MySqlCommand cmd = new MySqlCommand("verify_upload_item", new MySqlConnection(GetConnectionString()));
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            cmd.Parameters.Add(new MySqlParameter("p_upload_item_id", item_id));
+
+
+            cmd.Connection.Open();
+
+            MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            ErrorCode errorCode = new ErrorCode();
+
+            while (dr.Read())
+            {
+                errorCode.ResponseCode = Convert.ToInt32(dr["response_code"]);
+                errorCode.Meaning = Convert.ToString(dr["meaning"]);
+            }
+
+            dr.Close();
+
+            return errorCode;
+        }
+        public static ErrorCode DeleteUploadItem(int item_id)
+        {
+            MySqlCommand cmd = new MySqlCommand("delete_upload_item", new MySqlConnection(GetConnectionString()));
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            cmd.Parameters.Add(new MySqlParameter("p_item_id", item_id));
+
+
+            cmd.Connection.Open();
+
+            MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            ErrorCode errorCode = new ErrorCode();
+
+            while (dr.Read())
+            {
+                errorCode.ResponseCode = Convert.ToInt32(dr["response_code"]);
+                errorCode.Meaning = Convert.ToString(dr["meaning"]);
+            }
+
+            dr.Close();
+
+            return errorCode;
         }
     }
 }

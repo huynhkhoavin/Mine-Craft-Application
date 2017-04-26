@@ -31,9 +31,13 @@ namespace Mine_Craft_Adminitrator
         }
         private void ItemForm_Load(object sender, EventArgs e)
         {
+            
+            gridView.Refresh();
         }
+        
         private void btnShow_Click(object sender, EventArgs e)
         {
+            gridView.Refresh();
             string fromDateTime = dt_from.Value.ToString("yyyy-MM-dd HH:mm:ss");
             string toDateTime = dt_to.Value.ToString("yyyy-MM-dd HH:mm:ss");
             
@@ -56,11 +60,15 @@ namespace Mine_Craft_Adminitrator
                 isAddButton = true;
             }
         }
+        public void show()
+        {
+
+        }
         private void addColumnButton()
         {
             DataGridViewButtonColumn buttonView = new DataGridViewButtonColumn();
             {
-                buttonView.HeaderText = "Sales";
+                buttonView.HeaderText = "Action";
                 buttonView.Text = "View";
                 buttonView.UseColumnTextForButtonValue = true;
                 buttonView.AutoSizeMode =
@@ -70,19 +78,6 @@ namespace Mine_Craft_Adminitrator
 
             }
             gridView.Columns.Add(buttonView);
-
-            DataGridViewButtonColumn buttonDelete = new DataGridViewButtonColumn();
-            {
-                buttonDelete.HeaderText = "Sales";
-                buttonDelete.Text = "Delete";
-                buttonDelete.UseColumnTextForButtonValue = true;
-                buttonDelete.AutoSizeMode =
-                    DataGridViewAutoSizeColumnMode.AllCells;
-                buttonDelete.FlatStyle = FlatStyle.Standard;
-                buttonDelete.CellTemplate.Style.BackColor = Color.Honeydew;
-
-            }
-            gridView.Columns.Add(buttonDelete);
         }
         private void gridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -99,10 +94,6 @@ namespace Mine_Craft_Adminitrator
                         itemDetail.Show();
                         break;
                     }
-                case 4:
-                    {
-                        break;
-                    }
             }
         }
 
@@ -112,6 +103,32 @@ namespace Mine_Craft_Adminitrator
             if (PreviousForm!=null)
             {
                 PreviousForm.Show();
+            }
+        }
+
+        private void ListUploadItemForm_Shown(object sender, EventArgs e)
+        {
+            gridView.Refresh();
+            string fromDateTime = dt_from.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            string toDateTime = dt_to.Value.ToString("yyyy-MM-dd HH:mm:ss");
+
+            list = General.getAllUploadItem(fromDateTime, toDateTime);
+
+            int i = 1;
+            foreach (UploadItem uploadItem in list)
+            {
+                int type_id = uploadItem.type_id;
+                string typeName = itemTypeList[type_id].type_name;
+                displayItems.Add(new DisplayItem(i, typeName, uploadItem.item_name));
+                i++;
+            }
+            source.DataSource = displayItems;
+            gridView.DataSource = source;
+
+            if (isAddButton == false)
+            {
+                addColumnButton();
+                isAddButton = true;
             }
         }
     }

@@ -117,5 +117,10 @@ namespace Mine_Craft_Adminitrator
             dr.Close();
             return (ErrorItemlist[0].ResponseCode == 204);
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

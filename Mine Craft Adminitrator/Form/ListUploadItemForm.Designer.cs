@@ -74,6 +74,7 @@
             this.dt_from.Name = "dt_from";
             this.dt_from.Size = new System.Drawing.Size(200, 20);
             this.dt_from.TabIndex = 3;
+            this.dt_from.Value = new System.DateTime(2017, 4, 26, 11, 35, 7, 0);
             // 
             // label3
             // 
@@ -132,6 +133,7 @@
             this.Name = "ListUploadItemForm";
             this.Text = "ItemForm";
             this.Load += new System.EventHandler(this.ItemForm_Load);
+            this.Shown += new System.EventHandler(this.ListUploadItemForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

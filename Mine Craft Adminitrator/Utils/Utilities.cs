@@ -58,16 +58,25 @@ namespace Mine_Craft_Adminitrator.Utils
         }
         public static string GetExtension(string path)
         {
-            string myFileName = FileName(path);
+            string myFileName = FileNameFromPath(path);
             string ext = Path.GetExtension(myFileName);
             return ext;
         }
-        public static string FileName(string path)
+        public static string FileNameFromPath(string path)
         {
             Char charRange = '\\';
             int endIndex = path.LastIndexOf(charRange);
             
             return path.Substring(endIndex + 1);
+        }
+
+        public static string FileNameWithoutExtension(string path)
+        {
+            path = FileNameFromPath(path);
+            Char dotChar = '.';
+            int endIndex = path.LastIndexOf(dotChar);
+            string s =  path.Substring(0, endIndex);
+            return s;
         }
         public static void CreateFolder(string FilePath)
         {
@@ -78,7 +87,7 @@ namespace Mine_Craft_Adminitrator.Utils
                     Directory.CreateDirectory(FilePath);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // handle them here
             }
@@ -102,7 +111,7 @@ namespace Mine_Craft_Adminitrator.Utils
             List<string> listFile = new List<string>();
             foreach (string item in allfiles)
             {
-                string filename = FileName(item);
+                string filename = FileNameFromPath(item);
                 if (splitFileName(filename).Equals(fileName))
                 {
                     listFile.Add(filename);

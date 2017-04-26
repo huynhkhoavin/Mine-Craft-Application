@@ -89,6 +89,7 @@
     <Compile Include="Form\UploadForm.Designer.cs">
       <DependentUpon>UploadForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Constain.cs" />
     <Compile Include="Utils\Encript.cs" />
     <Compile Include="Utils\Utilities.cs" />
     <EmbeddedResource Include="Form\ListUploadItemForm.resx">

@@ -16,13 +16,13 @@ namespace Mine_Craft_Adminitrator
 {
     public partial class UploadForm : Form
     {
-
+        FolderBrowserDialog folderBrowserDialog;
         List<ItemType> itemTypeList = General.getItemType();
         List<Category> categoryList = General.getCategory();
         string imageUrl = "";
         string fileUrl = "";
         public Form PreviousForm;
-
+        public UploadItem Item;
         public string filterString = "Addon Files|*.addon";
         public UploadForm()
         {
@@ -32,6 +32,17 @@ namespace Mine_Craft_Adminitrator
 
         private void UploadForm_Load(object sender, EventArgs e)
         {
+            if (Item != null)
+            {
+                //Set default folder for save
+                folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.ShowNewFolderButton = true;
+            folderBrowserDialog.SelectedPath = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\Saved\\";
+            tb_RootDirectory.Text = folderBrowserDialog.SelectedPath;
+
+
+
+
             //Item Type
             var itemTypeSource = new BindingSource();
             itemTypeSource.DataSource = itemTypeList;
@@ -44,12 +55,52 @@ namespace Mine_Craft_Adminitrator
             cb_category.DataSource = categorySource;
             cb_category.DisplayMember = "category_name";
         }
+            else
+            Reload();
+        }
+
+        public void Reload()
+        {
+            if (Item == null)
+                return;
+            //Item Type
+            var itemTypeSource = new BindingSource();
+            itemTypeSource.DataSource = itemTypeList;
+            cb_itemType.DataSource = itemTypeSource;
+            cb_itemType.DisplayMember = "type_name";
+
+            //Category
+            var categorySource = new BindingSource();
+            categorySource.DataSource = categoryList;
+            cb_category.DataSource = categorySource;
+            cb_category.DisplayMember = "category_name";
+
+
+            cb_itemType.SelectedIndex = Item.type_id - 1;
+            tb_itemName.Text = Item.item_name;
+            tb_author.Text = Item.author_name;
+            tb_version.Text = Item.version;
+            tb_size.Text = Item.size;
+            cb_category.SelectedIndex = Item.category_id - 1;
+            rt_short_desc.Text = Item.short_description;
+            rt_long_desc.Text = Item.description;
+
+
+            tb_imageUrl.Text = Item.image_url;
+            tb_fileUrl.Text = Item.file_url;
+
+
+            tb_videoCode.Text = Item.video_code;
+            tb_hotPriority.Text = Item.hot_priority;
+        }
 
         private void btn_upload_Click(object sender, EventArgs e)
         {
-            UploadItem uploadItem = new UploadItem();
 
-            uploadItem.type_id = itemTypeList[cb_itemType.SelectedIndex].type_id;
+            UploadItem uploadItem = new UploadItem();
+            try
+            {
+                uploadItem.type_id = itemTypeList[cb_itemType.SelectedIndex].type_id;
 
             uploadItem.item_name = tb_itemName.Text;
 
@@ -65,24 +116,24 @@ namespace Mine_Craft_Adminitrator
 
             uploadItem.description = rt_long_desc.Text;
 
-            uploadItem.image_url = Utils.Utilities.FileName(imageUrl);
+            
+                uploadItem.image_url = Utils.Constain.SERVER_BASE_URL + "images/" + Utils.Utilities.FileNameFromPath(imageUrl);
 
-            uploadItem.file_url = Utils.Utilities.FileName(fileUrl);
+                uploadItem.file_url = Utils.Constain.SERVER_BASE_URL + "files/" + Utils.Utilities.FileNameFromPath(fileUrl);
 
-            uploadItem.thumb_url = Utils.Utilities.FileName(imageUrl);
-
+                uploadItem.thumb_url = Utils.Constain.SERVER_BASE_URL + "thumbs/" + Utils.Utilities.FileNameFromPath(imageUrl);
+            
             uploadItem.video_code = tb_videoCode.Text;
 
             uploadItem.hot_priority = tb_hotPriority.Text;
-
             //check info condition
             if (uploadItem.item_name == ""
                 || uploadItem.author_name == ""
                 || uploadItem.version == ""
                 || uploadItem.short_description == ""
                 || uploadItem.description == ""
-                || uploadItem.image_url == ""
-                || uploadItem.file_url == ""
+                || uploadItem.image_url.Equals("")
+                || uploadItem.file_url.Equals("")
                 || uploadItem.video_code == ""
                 || uploadItem.hot_priority == ""
                 )
@@ -96,70 +147,55 @@ namespace Mine_Craft_Adminitrator
             }
             else
             {
-                try
+                ErrorCode errorCode = General.uploadItem(uploadItem);
+                if (errorCode.ResponseCode == 200)
                 {
-                    
+                    if (folderBrowserDialog.SelectedPath.Equals(""))
                     {
-                        FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-                        folderBrowserDialog.ShowNewFolderButton = true;
-                        folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
                         DialogResult result = folderBrowserDialog.ShowDialog();
                         if (result == DialogResult.OK)
                         {
 
-                            try
-                            {
-                                
-                                ErrorCode errorCode = General.uploadItem(uploadItem);
-                                if (errorCode.ResponseCode == 200)
-                                {
-
-                                    string selectedFolderPath = folderBrowserDialog.SelectedPath;
-                                    Console.WriteLine(selectedFolderPath);
-
-                                    string subFolder = selectedFolderPath + "\\" + Utils.Utilities.ConvertDateTime();
-                                    Utils.Utilities.CreateFolder(subFolder);
-                                    string fileFolder = subFolder + "\\files";
-                                    Utils.Utilities.CreateFolder(fileFolder);
-                                    string imageFolder = subFolder + "\\images";
-                                    Utils.Utilities.CreateFolder(imageFolder);
-                                    string thumbFolder = subFolder + "\\thumbs";
-                                    Utils.Utilities.CreateFolder(thumbFolder);
-
-                                    Utils.Utilities.CopyFile(imageUrl, imageFolder, uploadItem.item_name + Utils.Utilities.GetExtension(imageUrl));
-                                    Utils.Utilities.CopyFile(fileUrl, fileFolder, uploadItem.item_name + Utils.Utilities.GetExtension(fileUrl));
-                                    Utils.Utilities.Resize(imageUrl, thumbFolder + "\\" + uploadItem.item_name + Utils.Utilities.GetExtension(imageUrl), 0.5);
-
-                                    if (MessageBox.Show("Upload success and saved to: " + subFolder + "\n", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
-                                    {
-
-                                        //Choose Folder Path to save
-                                        return;
-                                    }
-                                }
-                                if (errorCode.ResponseCode == 206)
-                                {
-                                    if (MessageBox.Show("Item name exist!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
-                                    {
-                                        return;
-                                    }
-                                }
-                            }
-                            catch (Exception)
-                            {
-                                
-                            }
-                            
+                            tb_RootDirectory.Text = folderBrowserDialog.SelectedPath;
                         }
                     }
-                }catch(Exception)
+                    
+                    string selectedFolderPath = tb_RootDirectory.Text;
+                    Console.WriteLine(selectedFolderPath);
+
+                    string subFolder = selectedFolderPath + Utils.Utilities.ConvertDateTime();
+                    Utils.Utilities.CreateFolder(subFolder);
+                    string fileFolder = subFolder + "\\files";
+                    Utils.Utilities.CreateFolder(fileFolder);
+                    string imageFolder = subFolder + "\\images";
+                    Utils.Utilities.CreateFolder(imageFolder);
+                    string thumbFolder = subFolder + "\\thumbs";
+                    Utils.Utilities.CreateFolder(thumbFolder);
+
+                    Utils.Utilities.CopyFile(imageUrl, imageFolder, uploadItem.item_name + Utils.Utilities.GetExtension(imageUrl));
+                    Utils.Utilities.CopyFile(fileUrl, fileFolder, uploadItem.item_name + Utils.Utilities.GetExtension(fileUrl));
+                    Utils.Utilities.Resize(imageUrl, thumbFolder + "\\" + uploadItem.item_name + Utils.Utilities.GetExtension(imageUrl), 0.5);
+
+                    if (MessageBox.Show("Upload success and saved to: " + subFolder + "\n", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
+                    {
+
+                        //Choose Folder Path to save
+                        return;
+                    }
+                }
+                if (errorCode.ResponseCode == 206)
                 {
-                    if (MessageBox.Show("Upload Failed! Please check your connection!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
+                    if (MessageBox.Show("Item name exist!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
                     {
                         return;
                     }
                 }
-                
+
+            }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error when process information, please fill all missing fields!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None);
             }
         }
 
@@ -169,7 +205,7 @@ namespace Mine_Craft_Adminitrator
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             //openFileDialog1.InitialDirectory = "c:\\";
             openFileDialog1.Filter = "Office Files|*.jpg;";
-                //*.png;*.jpeg";
+            //*.png;*.jpeg";
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
             Stream myStream = null;
@@ -181,7 +217,7 @@ namespace Mine_Craft_Adminitrator
                     {
 
                         string strfilename = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
-                            System.Console.WriteLine(strfilename);
+                        System.Console.WriteLine(strfilename);
                         imageUrl = strfilename;
                         tb_imageUrl.Text = imageUrl;
                     }
@@ -251,13 +287,25 @@ namespace Mine_Craft_Adminitrator
             {
                 filterString = "Mod Files|*.zip;*.js";
             }
-            else if(id == 2||id == 4|| id == 5)
+            else if (id == 2 || id == 4 || id == 5)
             {
                 filterString = "Zip Files|*.zip";
             }
-            else if(id == 3)
+            else if (id == 3)
             {
                 filterString = "Skin Files|*.png";
+            }
+            tb_imageUrl.Text = "";
+            tb_fileUrl.Text = "";
+        }
+
+        private void btn_selectRoot_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                
+                tb_RootDirectory.Text = folderBrowserDialog.SelectedPath;
             }
         }
     }
