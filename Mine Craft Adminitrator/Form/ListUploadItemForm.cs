@@ -31,52 +31,63 @@ namespace Mine_Craft_Adminitrator
         }
         private void ItemForm_Load(object sender, EventArgs e)
         {
-            
+            //role
+            if(General.get_Role() == 2)
+            {
+                btn_multiple.Enabled = false;
+            }
             gridView.Refresh();
         }
         
-        private void btnShow_Click(object sender, EventArgs e)
+        public void btnShow_Click(object sender, EventArgs e)
         {
+            Reload();
+        }
+
+        public void Reload()
+        {
+            //Reset History Data
+            gridView.DataSource = null;
             gridView.Refresh();
+            displayItems.Clear();
+            gridView.Columns.Clear();
+            //Reload
             string fromDateTime = dt_from.Value.ToString("yyyy-MM-dd HH:mm:ss");
             string toDateTime = dt_to.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            
-            list = General.getAllUploadItem(fromDateTime,toDateTime);
-            
+
+            list = General.getAllUploadItem(fromDateTime, toDateTime);
+
             int i = 1;
-            foreach(UploadItem uploadItem in list)
+            foreach (UploadItem uploadItem in list)
             {
                 int type_id = uploadItem.type_id;
                 string typeName = itemTypeList[type_id].type_name;
                 displayItems.Add(new DisplayItem(i, typeName, uploadItem.item_name));
-                    i++;
+                i++;
             }
             source.DataSource = displayItems;
             gridView.DataSource = source;
 
-            if (isAddButton == false)
+            //if (isAddButton == false)
             {
                 addColumnButton();
                 isAddButton = true;
             }
         }
-        public void show()
-        {
 
-        }
+        DataGridViewButtonColumn buttonView;
         private void addColumnButton()
         {
-            DataGridViewButtonColumn buttonView = new DataGridViewButtonColumn();
-            {
-                buttonView.HeaderText = "Action";
-                buttonView.Text = "View";
-                buttonView.UseColumnTextForButtonValue = true;
-                buttonView.AutoSizeMode =
-                    DataGridViewAutoSizeColumnMode.AllCells;
-                buttonView.FlatStyle = FlatStyle.Standard;
-                buttonView.CellTemplate.Style.BackColor = Color.Honeydew;
+            buttonView = new DataGridViewButtonColumn();
 
-            }
+            buttonView.HeaderText = "Action";
+            buttonView.Text = "View";
+            buttonView.UseColumnTextForButtonValue = true;
+            buttonView.AutoSizeMode =
+                DataGridViewAutoSizeColumnMode.AllCells;
+            buttonView.FlatStyle = FlatStyle.Standard;
+            buttonView.CellTemplate.Style.BackColor = Color.Honeydew;
+            
             gridView.Columns.Add(buttonView);
         }
         private void gridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -131,5 +142,45 @@ namespace Mine_Craft_Adminitrator
                 isAddButton = true;
             }
         }
+        List<int> selectedRow = new List<int>();
+        public bool checkExist(int a)
+        {
+            foreach(int x in selectedRow)
+            {
+                if (x == a)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void btn_multiple_Click(object sender, EventArgs e)
+        {
+            var selectedCellList = new List<CellData>();
+
+            foreach (DataGridViewCell cell in gridView.SelectedCells)
+            {
+                selectedCellList.Add(new CellData { ColumnName = cell.OwningColumn.Name, Value = cell.Value });
+                if (checkExist(cell.RowIndex) == false)
+                {
+                    selectedRow.Add(cell.RowIndex);
+                    
+                }
+            }
+            // Verify Item in selected list
+
+            foreach(int index in selectedRow)
+            {
+                ErrorCode responseCode = General.VerifyUploadItem(list[index].item_id);
+                MessageBox.Show(" Verify "+ responseCode.Meaning +  list[index].item_name, "Alert", MessageBoxButtons.OK, MessageBoxIcon.None);
+                Reload();
+            }
+        }
+    }
+    public class CellData
+    {
+        public string ColumnName { get; set; }
+        public object Value { get; set; }
     }
 }

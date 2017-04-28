@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -29,6 +30,12 @@ namespace Mine_Craft_Adminitrator
         }
         private void ItemDetail_Load(object sender, EventArgs e)
         {
+
+            if (General.get_Role() == 2)
+            {
+                btn_verify.Enabled = false;
+            }
+
             //Set default folder for save
             folderBrowserDialog = new FolderBrowserDialog();
             folderBrowserDialog.ShowNewFolderButton = true;
@@ -73,6 +80,11 @@ namespace Mine_Craft_Adminitrator
             this.Close();
             if (PreviousForm != null)
             {
+                ListUploadItemForm listUploadItemForm = (ListUploadItemForm)PreviousForm;
+                if (listUploadItemForm !=null)
+                {
+                    listUploadItemForm.Reload();
+                }
                 PreviousForm.Show();
             }
         }
@@ -150,6 +162,11 @@ namespace Mine_Craft_Adminitrator
             uploadForm.PreviousForm = this;
             this.Hide();
             uploadForm.Show();
+        }
+
+        private void btn_OpenDir_Click(object sender, EventArgs e)
+        {
+            Process.Start(tb_RootDirectory.Text);
         }
     }
 }

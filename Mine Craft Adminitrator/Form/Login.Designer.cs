@@ -64,6 +64,7 @@
             this.tb_password.Size = new System.Drawing.Size(195, 29);
             this.tb_password.TabIndex = 3;
             this.tb_password.Text = "01121994";
+            this.tb_password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_password_KeyPress);
             // 
             // label2
             // 

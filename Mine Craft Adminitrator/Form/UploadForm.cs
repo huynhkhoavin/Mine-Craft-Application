@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -32,17 +33,11 @@ namespace Mine_Craft_Adminitrator
 
         private void UploadForm_Load(object sender, EventArgs e)
         {
-            if (Item != null)
-            {
-                //Set default folder for save
-                folderBrowserDialog = new FolderBrowserDialog();
+            //Set default folder for save
+            folderBrowserDialog = new FolderBrowserDialog();
             folderBrowserDialog.ShowNewFolderButton = true;
             folderBrowserDialog.SelectedPath = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\Saved\\";
             tb_RootDirectory.Text = folderBrowserDialog.SelectedPath;
-
-
-
-
             //Item Type
             var itemTypeSource = new BindingSource();
             itemTypeSource.DataSource = itemTypeList;
@@ -54,11 +49,14 @@ namespace Mine_Craft_Adminitrator
             categorySource.DataSource = categoryList;
             cb_category.DataSource = categorySource;
             cb_category.DisplayMember = "category_name";
-        }
-            else
+            cb_category.SelectedIndex = categoryList.Count - 1;
+            if(Item!=null)
             Reload();
         }
-
+        protected override void OnShown(EventArgs e)
+        {
+            
+        }
         public void Reload()
         {
             if (Item == null)
@@ -127,20 +125,16 @@ namespace Mine_Craft_Adminitrator
 
             uploadItem.hot_priority = tb_hotPriority.Text;
             //check info condition
-            if (uploadItem.item_name == ""
-                || uploadItem.author_name == ""
-                || uploadItem.version == ""
-                || uploadItem.short_description == ""
-                || uploadItem.description == ""
-                || uploadItem.image_url.Equals("")
-                || uploadItem.file_url.Equals("")
-                || uploadItem.video_code == ""
-                || uploadItem.hot_priority == ""
+            if (tb_itemName.Text==""
+                || tb_author.Text==""
+                || rt_long_desc.Text==""
+                || tb_imageUrl.Text==""
+                || tb_fileUrl.Text==""
                 )
             {
                 // Displays the MessageBox.
 
-                if (MessageBox.Show("You must fill in all informations!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
+                if (MessageBox.Show("You must fill in at least: ItemName, ItemAuthor, Description, File, Image", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
                 {
                     return;
                 }
@@ -179,7 +173,16 @@ namespace Mine_Craft_Adminitrator
                     if (MessageBox.Show("Upload success and saved to: " + subFolder + "\n", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
                     {
 
-                        //Choose Folder Path to save
+                            tb_itemName.Text = "";
+                            tb_author.Text = "";
+                            tb_version.Text = "";
+                            tb_size.Text = "";
+                            rt_long_desc.Text = "";
+                            rt_short_desc.Text = "";
+                            tb_imageUrl.Text = "";
+                            tb_fileUrl.Text = "";
+                            tb_videoCode.Text = "";
+                            tb_hotPriority.Text = "1";
                         return;
                     }
                 }
@@ -307,6 +310,11 @@ namespace Mine_Craft_Adminitrator
                 
                 tb_RootDirectory.Text = folderBrowserDialog.SelectedPath;
             }
+        }
+
+        private void btn_OpenDir_Click(object sender, EventArgs e)
+        {
+            Process.Start(tb_RootDirectory.Text);
         }
     }
 }

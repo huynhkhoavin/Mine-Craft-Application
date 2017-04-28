@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,9 +13,24 @@ namespace Mine_Craft_Adminitrator.DataAccess
 {
     class General
     {
+        private static int role = 0;
         public static string GetConnectionString()
         {
-            return @"Server=localhost;Database=mine_craft_mods;Uid=root;";
+            Console.WriteLine(GetLocalIPAddress());
+            return @"Server=127.0.0.1;Database=mine_craft_mods;Uid=root;";
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("Local IP Address Not Found!");
         }
         public static List<ItemType> getItemType()
         {
@@ -155,7 +172,6 @@ namespace Mine_Craft_Adminitrator.DataAccess
         {
 
         }
-
         public static ErrorCode VerifyUploadItem(int item_id)
         {
             MySqlCommand cmd = new MySqlCommand("verify_upload_item", new MySqlConnection(GetConnectionString()));
@@ -205,6 +221,59 @@ namespace Mine_Craft_Adminitrator.DataAccess
             dr.Close();
 
             return errorCode;
+        }
+        public static bool CheckLogin(string userName, string password)
+        {
+            MySqlCommand cmd = new MySqlCommand("admin_authentication", new MySqlConnection(GetConnectionString()));
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new MySqlParameter("p_username", userName));
+            cmd.Parameters.Add(new MySqlParameter("p_password", password));
+
+            cmd.Connection.Open();
+            MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            List<ErrorCode> ErrorItemlist = new List<ErrorCode>();
+            while (dr.Read())
+            {
+                ErrorCode errorCode = new ErrorCode();
+                errorCode.ResponseCode = Convert.ToInt32(dr["response_code"]);
+                errorCode.Meaning = Convert.ToString(dr["meaning"]);
+                ErrorItemlist.Add(errorCode);
+            }
+            dr.Close();
+            return (ErrorItemlist[0].ResponseCode == 204);
+        }
+
+        public static void set_account_id(string Account_id)
+        {
+            //
+            //account_id = Account_id;
+        }
+
+        public static int set_Role(string user_name)
+        {
+            MySqlCommand cmd = new MySqlCommand("get_admin_role", new MySqlConnection(GetConnectionString()));
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new MySqlParameter("p_user_name", user_name));
+
+            cmd.Connection.Open();
+            MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (dr.Read())
+            {
+                role = Convert.ToInt32(dr["role"]);
+                
+            }
+            dr.Close();
+            return role;
+        }
+        public static int get_Role()
+        {
+            return role;
         }
     }
 }

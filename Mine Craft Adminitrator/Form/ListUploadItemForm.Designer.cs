@@ -36,15 +36,16 @@
             this.dt_to = new System.Windows.Forms.DateTimePicker();
             this.btnShow = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btn_multiple = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             this.SuspendLayout();
             // 
             // gridView
             // 
             this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridView.Location = new System.Drawing.Point(64, 183);
+            this.gridView.Location = new System.Drawing.Point(87, 154);
             this.gridView.Name = "gridView";
-            this.gridView.Size = new System.Drawing.Size(522, 220);
+            this.gridView.Size = new System.Drawing.Size(393, 249);
             this.gridView.TabIndex = 0;
             this.gridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellContentClick);
             // 
@@ -52,7 +53,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(289, 9);
+            this.label1.Location = new System.Drawing.Point(217, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 25);
             this.label1.TabIndex = 1;
@@ -95,11 +96,11 @@
             // 
             // btnShow
             // 
-            this.btnShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShow.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.btnShow.Location = new System.Drawing.Point(342, 73);
+            this.btnShow.Location = new System.Drawing.Point(301, 70);
             this.btnShow.Name = "btnShow";
-            this.btnShow.Size = new System.Drawing.Size(133, 60);
+            this.btnShow.Size = new System.Drawing.Size(80, 30);
             this.btnShow.TabIndex = 4;
             this.btnShow.Text = "Show";
             this.btnShow.UseVisualStyleBackColor = true;
@@ -107,22 +108,35 @@
             // 
             // btnBack
             // 
-            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.btnBack.Location = new System.Drawing.Point(516, 73);
+            this.btnBack.Location = new System.Drawing.Point(400, 69);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(133, 60);
+            this.btnBack.Size = new System.Drawing.Size(80, 30);
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // btn_multiple
+            // 
+            this.btn_multiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_multiple.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btn_multiple.Location = new System.Drawing.Point(301, 106);
+            this.btn_multiple.Name = "btn_multiple";
+            this.btn_multiple.Size = new System.Drawing.Size(179, 30);
+            this.btn_multiple.TabIndex = 4;
+            this.btn_multiple.Text = "Multiple Verify";
+            this.btn_multiple.UseVisualStyleBackColor = true;
+            this.btn_multiple.Click += new System.EventHandler(this.btn_multiple_Click);
+            // 
             // ListUploadItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(679, 415);
+            this.ClientSize = new System.Drawing.Size(538, 415);
             this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.btn_multiple);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.dt_to);
             this.Controls.Add(this.label3);
@@ -150,5 +164,6 @@
         private System.Windows.Forms.DateTimePicker dt_to;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btn_multiple;
     }
 }

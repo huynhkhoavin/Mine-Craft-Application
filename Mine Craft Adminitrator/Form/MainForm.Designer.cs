@@ -53,7 +53,7 @@
             this.btnVerify.Name = "btnVerify";
             this.btnVerify.Size = new System.Drawing.Size(166, 92);
             this.btnVerify.TabIndex = 0;
-            this.btnVerify.Text = "Verify Item";
+            this.btnVerify.Text = "List Upload Item";
             this.btnVerify.UseVisualStyleBackColor = true;
             this.btnVerify.Click += new System.EventHandler(this.verify_Item_Click);
             // 
