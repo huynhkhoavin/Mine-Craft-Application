@@ -19,7 +19,7 @@ namespace Mine_Craft_Adminitrator
 {
     public partial class XmlForm : Form
     {
-        public Form loginForm;
+        public Form previousForm;
 
         List<ItemType> itemTypeList = General.getItemType();
 
@@ -50,19 +50,17 @@ namespace Mine_Craft_Adminitrator
             this.Hide();
             listItemForm.Show();
         }
-        public void Log_Out_Click(Object sender, EventArgs e)
-        {
-            this.Hide();
-            loginForm.Show();
-        }
 
         private void XmlForm_Load(object sender, EventArgs e)
         {
+            rt_xmlContent.Text = "Put your XML code here...";
             //Item Type
             var itemTypeSource = new BindingSource();
             itemTypeSource.DataSource = itemTypeList;
             cb_itemType.DataSource = itemTypeSource;
             cb_itemType.DisplayMember = "type_name";
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -163,6 +161,53 @@ namespace Mine_Craft_Adminitrator
             listUploadItem.Clear();
             gridView.DataSource = null;
             gridView.Refresh();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<int> listResponseCode = new List<int>();
+            try
+            {
+                foreach (UploadItem uploadItem in listUploadItem)
+                {
+
+                    if ((General.uploadItem(uploadItem).ResponseCode) == 206)
+                    {
+                        MessageBox.Show("Exist Item: " + uploadItem.item_name);
+                    } 
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            previousForm.Show();
+        }
+
+        private void rt_xmlContent_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void rt_xmlContent_Enter(object sender, EventArgs e)
+        {
+            if (rt_xmlContent.Text == "Put your XML code here...")
+            {
+                rt_xmlContent.Text = "";
+            }
+        }
+
+        private void rt_xmlContent_Leave(object sender, EventArgs e)
+        {
+            if (rt_xmlContent.Text == "")
+            {
+                rt_xmlContent.Text = "Put your XML code here...";
+            }
         }
     }
 }

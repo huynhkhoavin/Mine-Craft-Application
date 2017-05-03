@@ -45,6 +45,7 @@ namespace Mine_Craft_Adminitrator
         {
             this.Hide();
             XmlForm xmlForm = new XmlForm();
+            xmlForm.previousForm = this;
             xmlForm.Show();
         }
     }

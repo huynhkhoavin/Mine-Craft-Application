@@ -61,7 +61,7 @@ namespace Mine_Craft_Adminitrator
             foreach (UploadItem uploadItem in list)
             {
                 int type_id = uploadItem.type_id;
-                string typeName = itemTypeList[type_id].type_name;
+                string typeName = itemTypeList[type_id-1].type_name;
                 displayItems.Add(new DisplayItem(i, typeName, uploadItem.item_name));
                 i++;
             }
@@ -129,7 +129,7 @@ namespace Mine_Craft_Adminitrator
             foreach (UploadItem uploadItem in list)
             {
                 int type_id = uploadItem.type_id;
-                string typeName = itemTypeList[type_id].type_name;
+                string typeName = itemTypeList[type_id-1].type_name;
                 displayItems.Add(new DisplayItem(i, typeName, uploadItem.item_name));
                 i++;
             }
