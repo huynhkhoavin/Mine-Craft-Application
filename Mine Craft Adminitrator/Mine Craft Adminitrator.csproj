@@ -55,7 +55,7 @@
     <Compile Include="DataObject\ErrorCode.cs" />
     <Compile Include="DataObject\ItemComment.cs" />
     <Compile Include="DataObject\ItemType.cs" />
-    <Compile Include="DataObject\MyStruct.cs" />
+    <Compile Include="DataObject\DisplayItem.cs" />
     <Compile Include="DataObject\UploadItem.cs" />
     <Compile Include="Form\ListUploadItemForm.cs">
       <SubType>Form</SubType>
@@ -68,6 +68,12 @@
     </Compile>
     <Compile Include="Form\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\XmlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\XmlForm.Designer.cs">
+      <DependentUpon>XmlForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\MainForm.cs">
       <SubType>Form</SubType>
@@ -89,14 +95,25 @@
     <Compile Include="Form\UploadForm.Designer.cs">
       <DependentUpon>UploadForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestXml\StepList.cs" />
     <Compile Include="Utils\Constain.cs" />
     <Compile Include="Utils\Encript.cs" />
     <Compile Include="Utils\Utilities.cs" />
+    <Compile Include="XmlObject\Data.cs" />
+    <Compile Include="XmlObject\MapList.cs" />
+    <Compile Include="XmlObject\SeedList.cs" />
+    <Compile Include="XmlObject\SkinList.cs" />
+    <Compile Include="XmlObject\TextureList.cs" />
+    <Compile Include="XmlObject\XmlItem.cs" />
+    <Compile Include="XmlObject\XmlUtils.cs" />
     <EmbeddedResource Include="Form\ListUploadItemForm.resx">
       <DependentUpon>ListUploadItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\XmlForm.resx">
+      <DependentUpon>XmlForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -129,6 +146,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

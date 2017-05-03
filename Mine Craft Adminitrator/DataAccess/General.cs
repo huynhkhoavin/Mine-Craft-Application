@@ -17,7 +17,7 @@ namespace Mine_Craft_Adminitrator.DataAccess
         public static string GetConnectionString()
         {
             Console.WriteLine(GetLocalIPAddress());
-            return @"Server=127.0.0.1;Database=mine_craft_mods;Uid=root;";
+            return @"Server=127.0.0.1;Database=mine_craft_mods;Uid=root;Password=pamobile";
         }
 
         public static string GetLocalIPAddress()
@@ -275,5 +275,6 @@ namespace Mine_Craft_Adminitrator.DataAccess
         {
             return role;
         }
+
     }
 }

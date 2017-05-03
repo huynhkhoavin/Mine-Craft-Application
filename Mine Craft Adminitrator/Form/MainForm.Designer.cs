@@ -31,6 +31,7 @@
             this.btnUpload = new System.Windows.Forms.Button();
             this.btnVerify = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btn_xml = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUpload
@@ -69,12 +70,25 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Log_Out_Click);
             // 
+            // btn_xml
+            // 
+            this.btn_xml.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_xml.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_xml.Location = new System.Drawing.Point(81, 359);
+            this.btn_xml.Name = "btn_xml";
+            this.btn_xml.Size = new System.Drawing.Size(166, 92);
+            this.btn_xml.TabIndex = 0;
+            this.btn_xml.Text = "XML Convert";
+            this.btn_xml.UseVisualStyleBackColor = true;
+            this.btn_xml.Click += new System.EventHandler(this.xml_Convert);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 681);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_xml);
             this.Controls.Add(this.btnVerify);
             this.Controls.Add(this.btnUpload);
             this.Name = "MainForm";
@@ -88,6 +102,7 @@
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.Button btnVerify;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_xml;
     }
 }
 

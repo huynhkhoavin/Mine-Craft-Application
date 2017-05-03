@@ -40,5 +40,12 @@ namespace Mine_Craft_Adminitrator
             this.Hide();
             loginForm.Show();
         }
+
+        private void xml_Convert(object sender, EventArgs e)
+        {
+            this.Hide();
+            XmlForm xmlForm = new XmlForm();
+            xmlForm.Show();
+        }
     }
 }

@@ -12,3 +12,4 @@ D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\bin\Debug\MySql.Dat
 D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.UploadForm.resources
 D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.ListUploadItemForm.resources
 D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.ItemDetail.resources
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.XmlForm.resources
