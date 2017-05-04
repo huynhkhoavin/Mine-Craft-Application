@@ -1,5 +1,6 @@
 ﻿using Mine_Craft_Adminitrator.DataAccess;
 using Mine_Craft_Adminitrator.DataObject;
+using Mine_Craft_Adminitrator.MyForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -169,13 +170,27 @@ namespace Mine_Craft_Adminitrator
                 }
             }
             // Verify Item in selected list
-
+            AlertForm f = new AlertForm();
             foreach(int index in selectedRow)
             {
-                ErrorCode responseCode = General.VerifyUploadItem(list[index].item_id);
-                MessageBox.Show(" Verify "+ responseCode.Meaning +  list[index].item_name, "Alert", MessageBoxButtons.OK, MessageBoxIcon.None);
-                Reload();
+                try
+                {
+                    ErrorCode responseCode = General.VerifyUploadItem(list[index].item_id);
+                    if (responseCode.ResponseCode == 200)
+                    {
+                        f.addContent(" Verify " + responseCode.Meaning + list[index].item_name, true);
+                    }
+                    else
+                        f.addContent(" Verify " + responseCode.Meaning + list[index].item_name, false);
+                    Reload();
+                }
+                catch (Exception)
+                {
+
+                }
+                
             }
+            f.Show();
         }
     }
     public class CellData

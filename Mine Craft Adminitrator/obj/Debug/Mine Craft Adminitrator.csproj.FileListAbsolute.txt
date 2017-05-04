@@ -13,3 +13,4 @@ D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craf
 D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.ListUploadItemForm.resources
 D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.ItemDetail.resources
 D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.XmlForm.resources
+D:\MineCraft\Mine Craft Adminitrator\Mine Craft Adminitrator\obj\Debug\Mine_Craft_Adminitrator.MyForm.AlertForm.resources

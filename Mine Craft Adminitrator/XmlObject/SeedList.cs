@@ -25,8 +25,7 @@ namespace Mine_Craft_Adminitrator.XmlObject
         public string Img_url { get; set; }
         [XmlElement(ElementName = "file_url")]
         public string File_url { get; set; }
-
-        public UploadItem convert()
+    public UploadItem convert()
         {
             UploadItem uploadItem = new UploadItem();
             uploadItem.type_id = XmlUtils.getTypeIdByName("Seed");
@@ -42,12 +41,8 @@ namespace Mine_Craft_Adminitrator.XmlObject
             uploadItem.hot_priority = "1";
             uploadItem.download_count = 0;
             uploadItem.is_verify = 0;
+            uploadItem.video_code = Code;
             return uploadItem;
-        }
-
-        UploadItem XmlItem.convert()
-        {
-            throw new NotImplementedException();
         }
     }
     [XmlRoot(ElementName = "list")]
@@ -58,5 +53,4 @@ namespace Mine_Craft_Adminitrator.XmlObject
         [XmlElement(ElementName = "data")]
         public Data Data { get; set; }
     }
-
 }

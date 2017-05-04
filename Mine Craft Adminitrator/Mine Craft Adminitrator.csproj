@@ -57,42 +57,48 @@
     <Compile Include="DataObject\ItemType.cs" />
     <Compile Include="DataObject\DisplayItem.cs" />
     <Compile Include="DataObject\UploadItem.cs" />
-    <Compile Include="Form\ListUploadItemForm.cs">
+    <Compile Include="MyForm\AlertForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\ListUploadItemForm.Designer.cs">
+    <Compile Include="MyForm\AlertForm.Designer.cs">
+      <DependentUpon>AlertForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForm\ListUploadItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\ListUploadItemForm.Designer.cs">
       <DependentUpon>ListUploadItemForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Login.cs">
+    <Compile Include="MyForm\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Login.Designer.cs">
+    <Compile Include="MyForm\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\XmlForm.cs">
+    <Compile Include="MyForm\XmlForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\XmlForm.Designer.cs">
+    <Compile Include="MyForm\XmlForm.Designer.cs">
       <DependentUpon>XmlForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\MainForm.cs">
+    <Compile Include="MyForm\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\MainForm.Designer.cs">
+    <Compile Include="MyForm\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\ItemDetail.cs">
+    <Compile Include="MyForm\ItemDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\ItemDetail.Designer.cs">
+    <Compile Include="MyForm\ItemDetail.Designer.cs">
       <DependentUpon>ItemDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Form\UploadForm.cs">
+    <Compile Include="MyForm\UploadForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\UploadForm.Designer.cs">
+    <Compile Include="MyForm\UploadForm.Designer.cs">
       <DependentUpon>UploadForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TestXml\StepList.cs" />
@@ -101,24 +107,28 @@
     <Compile Include="Utils\Utilities.cs" />
     <Compile Include="XmlObject\Data.cs" />
     <Compile Include="XmlObject\MapList.cs" />
+    <Compile Include="XmlObject\ModList.cs" />
     <Compile Include="XmlObject\SeedList.cs" />
     <Compile Include="XmlObject\SkinList.cs" />
     <Compile Include="XmlObject\TextureList.cs" />
     <Compile Include="XmlObject\XmlItem.cs" />
     <Compile Include="XmlObject\XmlUtils.cs" />
-    <EmbeddedResource Include="Form\ListUploadItemForm.resx">
+    <EmbeddedResource Include="MyForm\AlertForm.resx">
+      <DependentUpon>AlertForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\ListUploadItemForm.resx">
       <DependentUpon>ListUploadItemForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Login.resx">
+    <EmbeddedResource Include="MyForm\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\XmlForm.resx">
+    <EmbeddedResource Include="MyForm\XmlForm.resx">
       <DependentUpon>XmlForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\MainForm.resx">
+    <EmbeddedResource Include="MyForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\ItemDetail.resx">
+    <EmbeddedResource Include="MyForm\ItemDetail.resx">
       <DependentUpon>ItemDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -130,7 +140,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form\UploadForm.resx">
+    <EmbeddedResource Include="MyForm\UploadForm.resx">
       <DependentUpon>UploadForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

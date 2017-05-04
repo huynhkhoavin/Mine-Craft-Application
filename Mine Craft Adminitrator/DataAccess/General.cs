@@ -107,6 +107,45 @@ namespace Mine_Craft_Adminitrator.DataAccess
 
             return errorCode;
         }
+        public static ErrorCode uploadXmlItem(UploadItem uploadItem)
+        {
+            MySqlCommand cmd = new MySqlCommand("add_new_upload_item", new MySqlConnection(GetConnectionString()));
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            cmd.Parameters.Add(new MySqlParameter("p_type_id", uploadItem.type_id));
+            cmd.Parameters.Add(new MySqlParameter("p_category_id", uploadItem.category_id));
+            cmd.Parameters.Add(new MySqlParameter("p_item_name", uploadItem.item_name));
+            cmd.Parameters.Add(new MySqlParameter("p_file_url", uploadItem.file_url));
+            cmd.Parameters.Add(new MySqlParameter("p_image_url", uploadItem.image_url));
+            cmd.Parameters.Add(new MySqlParameter("p_thumb_url", uploadItem.thumb_url));
+            cmd.Parameters.Add(new MySqlParameter("p_author_name", uploadItem.author_name));
+            cmd.Parameters.Add(new MySqlParameter("p_version", uploadItem.version));
+            cmd.Parameters.Add(new MySqlParameter("p_size", uploadItem.size));
+            cmd.Parameters.Add(new MySqlParameter("p_description", uploadItem.description));
+            cmd.Parameters.Add(new MySqlParameter("p_short_description", uploadItem.short_description));
+            cmd.Parameters.Add(new MySqlParameter("p_hot_priority", uploadItem.hot_priority));
+            cmd.Parameters.Add(new MySqlParameter("p_video_code", uploadItem.video_code));
+            cmd.Parameters.Add(new MySqlParameter("p_download_count", uploadItem.download_count));
+            cmd.Parameters.Add(new MySqlParameter("p_is_verify", uploadItem.is_verify));
+
+
+            cmd.Connection.Open();
+
+            MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            ErrorCode errorCode = new ErrorCode();
+
+            while (dr.Read())
+            {
+                errorCode.ResponseCode = Convert.ToInt32(dr["response_code"]);
+                errorCode.Meaning = Convert.ToString(dr["meaning"]);
+            }
+
+            dr.Close();
+
+            return errorCode;
+        }
         public static List<UploadItem> getAllUploadItem(string from, string to)
         {
             MySqlCommand cmd = new MySqlCommand("get_all_upload_item", new MySqlConnection(GetConnectionString()));

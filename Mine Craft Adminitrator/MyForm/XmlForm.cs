@@ -1,5 +1,6 @@
 ﻿using Mine_Craft_Adminitrator.DataAccess;
 using Mine_Craft_Adminitrator.DataObject;
+using Mine_Craft_Adminitrator.MyForm;
 using Mine_Craft_Adminitrator.TestXml;
 using Mine_Craft_Adminitrator.XmlObject;
 using System;
@@ -74,12 +75,28 @@ namespace Mine_Craft_Adminitrator
                 {
                     case 0: // Addon
                         {
-
+                            XmlSerializer serializer = new XmlSerializer(typeof(ModList));
+                            using (TextReader reader = new StringReader(data))
+                            {
+                                ModList result = (ModList)serializer.Deserialize(reader);
+                                foreach (Mod map in result.Mod)
+                                {
+                                    listConvertedItem.Add(map);
+                                }
+                            }
                             break;
                         }
                     case 1: //Mod
                         {
-
+                            XmlSerializer serializer = new XmlSerializer(typeof(ModList));
+                            using (TextReader reader = new StringReader(data))
+                            {
+                                ModList result = (ModList)serializer.Deserialize(reader);
+                                foreach (Mod map in result.Mod)
+                                {
+                                    listConvertedItem.Add(map);
+                                }
+                            }
                             break;
                         }
                     case 2: //Map
@@ -168,14 +185,23 @@ namespace Mine_Craft_Adminitrator
             List<int> listResponseCode = new List<int>();
             try
             {
+                AlertForm f = new AlertForm();
+
                 foreach (UploadItem uploadItem in listUploadItem)
                 {
 
-                    if ((General.uploadItem(uploadItem).ResponseCode) == 206)
+                    int result = General.uploadXmlItem(uploadItem).ResponseCode;
+                    if (result == 206)
                     {
-                        MessageBox.Show("Exist Item: " + uploadItem.item_name);
-                    } 
+                        //MessageBox.Show("Exist Item: " + uploadItem.item_name);
+                        f.addContent("Exist Item: " + uploadItem.item_name,false);
+                    }
+                    else if(result == 200)
+                    {
+                        f.addContent("Success Upload: " + uploadItem.item_name,true);
+                    }
                 }
+                f.Show();
             }
             catch (Exception)
             {
