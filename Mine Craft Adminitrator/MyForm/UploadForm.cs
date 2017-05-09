@@ -29,6 +29,7 @@ namespace Mine_Craft_Adminitrator
         {
             InitializeComponent();
             CenterToScreen();
+            lb_statusBar.Text = "";
         }
 
         private void UploadForm_Load(object sender, EventArgs e)
@@ -90,11 +91,12 @@ namespace Mine_Craft_Adminitrator
 
             tb_videoCode.Text = Item.video_code;
             tb_hotPriority.Text = Item.hot_priority;
+            tb_price.Text = Item.price.ToString();
         }
 
         private void btn_upload_Click(object sender, EventArgs e)
         {
-
+            lb_statusBar.Text = "Connecting... Please wait!";
             UploadItem uploadItem = new UploadItem();
             try
             {
@@ -114,7 +116,8 @@ namespace Mine_Craft_Adminitrator
 
             uploadItem.description = rt_long_desc.Text;
 
-            
+                uploadItem.price = Int32.Parse(tb_price.Text);
+
                 uploadItem.image_url = Utils.Constain.SERVER_BASE_URL + "images/" + Utils.Utilities.FileNameFromPath(imageUrl);
 
                 uploadItem.file_url = Utils.Constain.SERVER_BASE_URL + "files/" + Utils.Utilities.FileNameFromPath(fileUrl);
@@ -136,7 +139,8 @@ namespace Mine_Craft_Adminitrator
 
                 if (MessageBox.Show("You must fill in at least: ItemName, ItemAuthor, Description, File, Image", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
                 {
-                    return;
+                        lb_statusBar.Text = "";
+                        return;
                 }
             }
             else
@@ -172,7 +176,7 @@ namespace Mine_Craft_Adminitrator
 
                     if (MessageBox.Show("Upload success and saved to: " + subFolder + "\n", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
                     {
-
+                            lb_statusBar.Text = "";
                             tb_itemName.Text = "";
                             tb_author.Text = "";
                             tb_version.Text = "";
@@ -190,7 +194,8 @@ namespace Mine_Craft_Adminitrator
                 {
                     if (MessageBox.Show("Item name exist!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
                     {
-                        return;
+                            lb_statusBar.Text = "";
+                            return;
                     }
                 }
 
@@ -315,6 +320,21 @@ namespace Mine_Craft_Adminitrator
         private void btn_OpenDir_Click(object sender, EventArgs e)
         {
             Process.Start(tb_RootDirectory.Text);
+        }
+
+        private void tb_price_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

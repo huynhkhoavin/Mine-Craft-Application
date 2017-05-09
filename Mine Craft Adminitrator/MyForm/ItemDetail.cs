@@ -27,6 +27,7 @@ namespace Mine_Craft_Adminitrator
         {
             InitializeComponent();
             CenterToScreen();
+            lb_statusBar.Text = "";
         }
         private void ItemDetail_Load(object sender, EventArgs e)
         {
@@ -64,7 +65,7 @@ namespace Mine_Craft_Adminitrator
             cb_category.SelectedIndex = Item.category_id - 1;
             rt_short_desc.Text = Item.short_description;
             rt_long_desc.Text = Item.description;
-
+            tb_price.Text = Item.price.ToString();
 
             tb_fileUrl.Text = Item.file_url;
 
@@ -91,6 +92,7 @@ namespace Mine_Craft_Adminitrator
 
         private void btn_verify_Click(object sender, EventArgs e)
         {
+            lb_statusBar.Text = "Connecting... Please wait!";
             ErrorCode responseCode = General.VerifyUploadItem(Item.item_id);
             if (MessageBox.Show(responseCode.Meaning, "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
             {
@@ -113,6 +115,7 @@ namespace Mine_Craft_Adminitrator
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
+            lb_statusBar.Text = "Processing... Please wait!";
             try
             {
                 if (MessageBox.Show("Do you want to delete this item, this action can't be undo? ", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.None) == DialogResult.Yes)
@@ -153,6 +156,7 @@ namespace Mine_Craft_Adminitrator
 
         private void btn_ReUpload_Click(object sender, EventArgs e)
         {
+            lb_statusBar.Text = "Connecting... Please wait!";
             UploadForm uploadForm = new UploadForm();
             uploadForm.Item = Item;
             uploadForm.Item.file_url = "";
@@ -167,6 +171,11 @@ namespace Mine_Craft_Adminitrator
         private void btn_OpenDir_Click(object sender, EventArgs e)
         {
             Process.Start(tb_RootDirectory.Text);
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

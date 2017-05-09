@@ -27,6 +27,7 @@ namespace Mine_Craft_Adminitrator
 
         private void btnClick(object sender, EventArgs e)
         {
+            lb_statusBar.Text = "Please waiting...";
             if (General.CheckLogin(tb_username.Text, Utils.Encript.MD5Hash(tb_password.Text))){
 
                 General.set_Role(tb_username.Text);
@@ -37,11 +38,14 @@ namespace Mine_Craft_Adminitrator
                 
                 mainform.Show();
 
+                lb_statusBar.Text = "";
+
                 this.Hide();
                 
             }
             else
             {
+                lb_statusBar.Text = "";
                 string message = "Wrong Username or Password! Please Try Again!";
                 string caption = "Alert";
                 if (MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)

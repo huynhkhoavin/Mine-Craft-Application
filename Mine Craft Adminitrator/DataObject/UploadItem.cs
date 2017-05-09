@@ -25,5 +25,7 @@ namespace Mine_Craft_Adminitrator.DataObject
         public int is_verify { get; set; }
         public DateTime create_time { get; set; }
         public string video_code { get; set; }
+        public int price { get; set; }
+
     }
 }

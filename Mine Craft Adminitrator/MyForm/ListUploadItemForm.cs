@@ -28,7 +28,8 @@ namespace Mine_Craft_Adminitrator
         public ListUploadItemForm()
         {
             InitializeComponent();
-            CenterToScreen();   
+            CenterToScreen();
+            lb_statusBar.Text = "";  
         }
         private void ItemForm_Load(object sender, EventArgs e)
         {
@@ -47,6 +48,7 @@ namespace Mine_Craft_Adminitrator
 
         public void Reload()
         {
+            lb_statusBar.Text = "Loading...";
             //Reset History Data
             gridView.DataSource = null;
             gridView.Refresh();
@@ -74,6 +76,7 @@ namespace Mine_Craft_Adminitrator
                 addColumnButton();
                 isAddButton = true;
             }
+            lb_statusBar.Text = "";
         }
 
         DataGridViewButtonColumn buttonView;

@@ -32,12 +32,13 @@
             this.btnVerify = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_xml = new System.Windows.Forms.Button();
+            this.lb_statusBar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnUpload
             // 
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpload.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnUpload.ForeColor = System.Drawing.SystemColors.InfoText;
             this.btnUpload.Location = new System.Drawing.Point(81, 180);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(166, 92);
@@ -49,7 +50,7 @@
             // btnVerify
             // 
             this.btnVerify.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerify.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnVerify.ForeColor = System.Drawing.SystemColors.InfoText;
             this.btnVerify.Location = new System.Drawing.Point(376, 180);
             this.btnVerify.Name = "btnVerify";
             this.btnVerify.Size = new System.Drawing.Size(166, 92);
@@ -61,7 +62,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button2.ForeColor = System.Drawing.SystemColors.InfoText;
             this.button2.Location = new System.Drawing.Point(676, 180);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(166, 92);
@@ -73,7 +74,7 @@
             // btn_xml
             // 
             this.btn_xml.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xml.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_xml.ForeColor = System.Drawing.SystemColors.InfoText;
             this.btn_xml.Location = new System.Drawing.Point(81, 359);
             this.btn_xml.Name = "btn_xml";
             this.btn_xml.Size = new System.Drawing.Size(166, 92);
@@ -82,18 +83,30 @@
             this.btn_xml.UseVisualStyleBackColor = true;
             this.btn_xml.Click += new System.EventHandler(this.xml_Convert);
             // 
+            // lb_statusBar
+            // 
+            this.lb_statusBar.AutoSize = true;
+            this.lb_statusBar.ForeColor = System.Drawing.Color.Red;
+            this.lb_statusBar.Location = new System.Drawing.Point(34, 631);
+            this.lb_statusBar.Name = "lb_statusBar";
+            this.lb_statusBar.Size = new System.Drawing.Size(0, 13);
+            this.lb_statusBar.TabIndex = 6;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 681);
+            this.Controls.Add(this.lb_statusBar);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_xml);
             this.Controls.Add(this.btnVerify);
             this.Controls.Add(this.btnUpload);
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -103,6 +116,7 @@
         private System.Windows.Forms.Button btnVerify;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_xml;
+        private System.Windows.Forms.Label lb_statusBar;
     }
 }
 

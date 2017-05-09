@@ -37,6 +37,7 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.btn_multiple = new System.Windows.Forms.Button();
+            this.lb_statusBar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +98,7 @@
             // btnShow
             // 
             this.btnShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShow.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btnShow.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.btnShow.Location = new System.Drawing.Point(301, 70);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(80, 30);
@@ -109,7 +110,7 @@
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btnBack.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.btnBack.Location = new System.Drawing.Point(400, 69);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(80, 30);
@@ -121,7 +122,7 @@
             // btn_multiple
             // 
             this.btn_multiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_multiple.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btn_multiple.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.btn_multiple.Location = new System.Drawing.Point(301, 106);
             this.btn_multiple.Name = "btn_multiple";
             this.btn_multiple.Size = new System.Drawing.Size(179, 30);
@@ -130,11 +131,21 @@
             this.btn_multiple.UseVisualStyleBackColor = true;
             this.btn_multiple.Click += new System.EventHandler(this.btn_multiple_Click);
             // 
+            // lb_statusBar
+            // 
+            this.lb_statusBar.AutoSize = true;
+            this.lb_statusBar.ForeColor = System.Drawing.Color.Red;
+            this.lb_statusBar.Location = new System.Drawing.Point(12, 440);
+            this.lb_statusBar.Name = "lb_statusBar";
+            this.lb_statusBar.Size = new System.Drawing.Size(0, 13);
+            this.lb_statusBar.TabIndex = 38;
+            // 
             // ListUploadItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 415);
+            this.ClientSize = new System.Drawing.Size(551, 462);
+            this.Controls.Add(this.lb_statusBar);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btn_multiple);
             this.Controls.Add(this.btnShow);
@@ -165,5 +176,6 @@
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btn_multiple;
+        private System.Windows.Forms.Label lb_statusBar;
     }
 }

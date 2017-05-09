@@ -16,22 +16,21 @@ namespace Mine_Craft_Adminitrator.DataAccess
         private static int role = 0;
         public static string GetConnectionString()
         {
-            Console.WriteLine(GetLocalIPAddress());
             return @"server=198.1.92.155;user id=mcpecent_dev02;password=dev02@pamobile;database=mine_craft_mods;persistsecurityinfo=True";
         }
 
-        public static string GetLocalIPAddress()
-        {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
-            throw new Exception("Local IP Address Not Found!");
-        }
+        //public static string GetLocalIPAddress()
+        //{
+        //    var host = Dns.GetHostEntry(Dns.GetHostName());
+        //    foreach (var ip in host.AddressList)
+        //    {
+        //        if (ip.AddressFamily == AddressFamily.InterNetwork)
+        //        {
+        //            return ip.ToString();
+        //        }
+        //    }
+        //    throw new Exception("Local IP Address Not Found!");
+        //}
         public static List<ItemType> getItemType()
         {
             MySqlCommand cmd = new MySqlCommand("get_all_item_type", new MySqlConnection(GetConnectionString()));
@@ -74,6 +73,7 @@ namespace Mine_Craft_Adminitrator.DataAccess
             cmd.CommandType = CommandType.StoredProcedure;
 
 
+
             cmd.Parameters.Add(new MySqlParameter("p_type_id", uploadItem.type_id));
             cmd.Parameters.Add(new MySqlParameter("p_category_id", uploadItem.category_id));
             cmd.Parameters.Add(new MySqlParameter("p_item_name", uploadItem.item_name));
@@ -89,8 +89,8 @@ namespace Mine_Craft_Adminitrator.DataAccess
             cmd.Parameters.Add(new MySqlParameter("p_video_code", uploadItem.video_code));
             cmd.Parameters.Add(new MySqlParameter("p_download_count", uploadItem.download_count));
             cmd.Parameters.Add(new MySqlParameter("p_is_verify", uploadItem.is_verify));
+            cmd.Parameters.Add(new MySqlParameter("p_price", uploadItem.price));
 
-      
             cmd.Connection.Open();
 
             MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -198,6 +198,7 @@ namespace Mine_Craft_Adminitrator.DataAccess
 
                 DateTime addedDate = (DateTime)dr["create_time"];
 
+                uploadItem.price = Convert.ToInt32(dr["price"]);
                 uploadItem.create_time = addedDate;
                 //Convert DateTime
                 listUploadItem.Add(uploadItem);
