@@ -22,6 +22,7 @@ namespace Mine_Craft_Adminitrator
         List<Category> categoryList = General.getCategory();
         string imageUrl = "";
         string fileUrl = "";
+        string jsFileUrl = "";
         public Form PreviousForm;
         public UploadItem Item;
         public string filterString = "Addon Files|*.addon";
@@ -30,8 +31,26 @@ namespace Mine_Craft_Adminitrator
             InitializeComponent();
             CenterToScreen();
             lb_statusBar.Text = "";
+            var timer = new Timer();
+            timer.Tick += new EventHandler(Update);
+            timer.Interval = 100;
+            timer.Start();
         }
+        void Update(object sender, EventArgs e)
+        {
+            //check JS file need
+            if (checkOpenJSFile())
+            {
+                    tb_JSFile.Enabled = true;
+                    btn_JSBrowser.Enabled = true;
+            }
+            else
+            {
+                tb_JSFile.Enabled = false;
+                btn_JSBrowser.Enabled = false;
+            }
 
+        }
         private void UploadForm_Load(object sender, EventArgs e)
         {
             //Set default folder for save
@@ -39,6 +58,7 @@ namespace Mine_Craft_Adminitrator
             folderBrowserDialog.ShowNewFolderButton = true;
             folderBrowserDialog.SelectedPath = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\Saved\\";
             tb_RootDirectory.Text = folderBrowserDialog.SelectedPath;
+            
             //Item Type
             var itemTypeSource = new BindingSource();
             itemTypeSource.DataSource = itemTypeList;
@@ -51,7 +71,7 @@ namespace Mine_Craft_Adminitrator
             cb_category.DataSource = categorySource;
             cb_category.DisplayMember = "category_name";
             cb_category.SelectedIndex = categoryList.Count - 1;
-            if(Item!=null)
+            if (Item!=null)
             Reload();
         }
         protected override void OnShown(EventArgs e)
@@ -100,7 +120,8 @@ namespace Mine_Craft_Adminitrator
             UploadItem uploadItem = new UploadItem();
             try
             {
-                uploadItem.type_id = itemTypeList[cb_itemType.SelectedIndex].type_id;
+                ItemType itemType = (ItemType)cb_category.SelectedValue;
+                uploadItem.type_id = itemType.type_id;
 
             uploadItem.item_name = tb_itemName.Text;
 
@@ -145,9 +166,12 @@ namespace Mine_Craft_Adminitrator
             }
             else
             {
+                    //Upload to Mysql Database
                 ErrorCode errorCode = General.uploadItem(uploadItem);
+
                 if (errorCode.ResponseCode == 200)
                 {
+                        //Check folder Path is Empty?
                     if (folderBrowserDialog.SelectedPath.Equals(""))
                     {
                         DialogResult result = folderBrowserDialog.ShowDialog();
@@ -155,12 +179,14 @@ namespace Mine_Craft_Adminitrator
                         {
 
                             tb_RootDirectory.Text = folderBrowserDialog.SelectedPath;
+
                         }
                     }
                     
                     string selectedFolderPath = tb_RootDirectory.Text;
-                    Console.WriteLine(selectedFolderPath);
 
+                    Console.WriteLine(selectedFolderPath);
+                    
                     string subFolder = selectedFolderPath + Utils.Utilities.ConvertDateTime();
                     Utils.Utilities.CreateFolder(subFolder);
                     string fileFolder = subFolder + "\\files";
@@ -173,7 +199,10 @@ namespace Mine_Craft_Adminitrator
                     Utils.Utilities.CopyFile(imageUrl, imageFolder, uploadItem.item_name + Utils.Utilities.GetExtension(imageUrl));
                     Utils.Utilities.CopyFile(fileUrl, fileFolder, uploadItem.item_name + Utils.Utilities.GetExtension(fileUrl));
                     Utils.Utilities.Resize(imageUrl, thumbFolder + "\\" + uploadItem.item_name + Utils.Utilities.GetExtension(imageUrl), 0.5);
-
+                        if (checkOpenJSFile())
+                        {
+                            Utils.Utilities.CopyFile(jsFileUrl, fileFolder, uploadItem.item_name + Utils.Utilities.GetExtension(jsFileUrl));
+                        }
                     if (MessageBox.Show("Upload success and saved to: " + subFolder + "\n", "Alert", MessageBoxButtons.OK, MessageBoxIcon.None) == DialogResult.OK)
                     {
                             lb_statusBar.Text = "";
@@ -272,20 +301,9 @@ namespace Mine_Craft_Adminitrator
             PreviousForm.Show();
         }
 
-        private void getFileName()
-        {
-            if (imageUrl == "" || fileUrl == "")
-            {
-                return;
-            }
-            else
-            {
-
-            }
-        }
-
         private void cb_itemType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Checking file extension depend on item type
             int id = cb_itemType.SelectedIndex;
             if (id == 0) //addon
             {
@@ -303,8 +321,18 @@ namespace Mine_Craft_Adminitrator
             {
                 filterString = "Skin Files|*.png";
             }
+
+            //Change Category depend on item type
             tb_imageUrl.Text = "";
             tb_fileUrl.Text = "";
+            List<Category> CategoryList = General.getCategoryByType(itemTypeList[cb_itemType.SelectedIndex]);
+            //Category
+            var categorySource = new BindingSource();
+            categorySource.DataSource = CategoryList;
+            cb_category.DataSource = categorySource;
+            cb_category.DisplayMember = "category_name";
+            cb_category.SelectedIndex = CategoryList.Count - 1;
+            cb_category.Refresh();
         }
 
         private void btn_selectRoot_Click(object sender, EventArgs e)
@@ -334,6 +362,43 @@ namespace Mine_Craft_Adminitrator
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+        }
+
+        public bool checkOpenJSFile()
+        {
+            int id = cb_itemType.SelectedIndex;
+            if (id == 1 && Utils.Utilities.GetExtension(tb_fileUrl.Text).Equals(".zip")) //Mod
+                return true;
+            return false;
+        }
+
+        private void btn_JSBrowser_Click(object sender, EventArgs e)
+        {
+            System.Console.WriteLine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            //openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "JS Files|*.js";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+            Stream myStream = null;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    {
+
+                        string strfilename = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
+                        System.Console.WriteLine(strfilename);
+                        jsFileUrl = strfilename;
+                        tb_JSFile.Text = jsFileUrl;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
             }
         }
     }

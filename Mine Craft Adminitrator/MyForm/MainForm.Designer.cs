@@ -33,15 +33,16 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btn_xml = new System.Windows.Forms.Button();
             this.lb_statusBar = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnUpload
             // 
-            this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpload.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpload.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnUpload.Location = new System.Drawing.Point(81, 180);
+            this.btnUpload.Location = new System.Drawing.Point(67, 75);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(166, 92);
+            this.btnUpload.Size = new System.Drawing.Size(150, 50);
             this.btnUpload.TabIndex = 0;
             this.btnUpload.Text = "Upload Item";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -49,11 +50,11 @@
             // 
             // btnVerify
             // 
-            this.btnVerify.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerify.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerify.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btnVerify.Location = new System.Drawing.Point(376, 180);
+            this.btnVerify.Location = new System.Drawing.Point(294, 75);
             this.btnVerify.Name = "btnVerify";
-            this.btnVerify.Size = new System.Drawing.Size(166, 92);
+            this.btnVerify.Size = new System.Drawing.Size(150, 50);
             this.btnVerify.TabIndex = 0;
             this.btnVerify.Text = "List Upload Item";
             this.btnVerify.UseVisualStyleBackColor = true;
@@ -61,11 +62,11 @@
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.button2.Location = new System.Drawing.Point(676, 180);
+            this.button2.Location = new System.Drawing.Point(527, 75);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(166, 92);
+            this.button2.Size = new System.Drawing.Size(150, 50);
             this.button2.TabIndex = 0;
             this.button2.Text = "Log Out";
             this.button2.UseVisualStyleBackColor = true;
@@ -73,11 +74,11 @@
             // 
             // btn_xml
             // 
-            this.btn_xml.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_xml.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_xml.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.btn_xml.Location = new System.Drawing.Point(81, 359);
+            this.btn_xml.Location = new System.Drawing.Point(67, 199);
             this.btn_xml.Name = "btn_xml";
-            this.btn_xml.Size = new System.Drawing.Size(166, 92);
+            this.btn_xml.Size = new System.Drawing.Size(150, 50);
             this.btn_xml.TabIndex = 0;
             this.btn_xml.Text = "XML Convert";
             this.btn_xml.UseVisualStyleBackColor = true;
@@ -92,11 +93,23 @@
             this.lb_statusBar.Size = new System.Drawing.Size(0, 13);
             this.lb_statusBar.TabIndex = 6;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(318, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 22);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Upload Item";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 681);
+            this.ClientSize = new System.Drawing.Size(773, 321);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lb_statusBar);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_xml);
@@ -117,6 +130,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_xml;
         private System.Windows.Forms.Label lb_statusBar;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -69,7 +69,13 @@ namespace Mine_Craft_Adminitrator.Utils
             
             return path.Substring(endIndex + 1);
         }
+        public static string GetParenPath(string filePath)
+        {
+            Char charRange = '/';
+            int endIndex = filePath.LastIndexOf(charRange);
 
+            return filePath.Substring(0, endIndex+1);
+        }
         public static string FileNameWithoutExtension(string path)
         {
             path = FileNameFromPath(path);

@@ -44,29 +44,29 @@
             // gridView
             // 
             this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridView.Location = new System.Drawing.Point(87, 154);
+            this.gridView.Location = new System.Drawing.Point(47, 154);
             this.gridView.Name = "gridView";
-            this.gridView.Size = new System.Drawing.Size(393, 249);
+            this.gridView.Size = new System.Drawing.Size(380, 249);
             this.gridView.TabIndex = 0;
             this.gridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellContentClick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(217, 9);
+            this.label1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(199, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 25);
+            this.label1.Size = new System.Drawing.Size(88, 22);
             this.label1.TabIndex = 1;
             this.label1.Text = "Item List";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 70);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(44, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 25);
+            this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "From";
             // 
@@ -81,10 +81,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 110);
+            this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(44, 116);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 25);
+            this.label3.Size = new System.Drawing.Size(19, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "To";
             // 
@@ -97,11 +97,11 @@
             // 
             // btnShow
             // 
-            this.btnShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShow.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.btnShow.Location = new System.Drawing.Point(301, 70);
             this.btnShow.Name = "btnShow";
-            this.btnShow.Size = new System.Drawing.Size(80, 30);
+            this.btnShow.Size = new System.Drawing.Size(60, 25);
             this.btnShow.TabIndex = 4;
             this.btnShow.Text = "Show";
             this.btnShow.UseVisualStyleBackColor = true;
@@ -109,11 +109,11 @@
             // 
             // btnBack
             // 
-            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.btnBack.Location = new System.Drawing.Point(400, 69);
+            this.btnBack.Location = new System.Drawing.Point(367, 70);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(80, 30);
+            this.btnBack.Size = new System.Drawing.Size(60, 25);
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -121,11 +121,11 @@
             // 
             // btn_multiple
             // 
-            this.btn_multiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_multiple.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_multiple.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.btn_multiple.Location = new System.Drawing.Point(301, 106);
+            this.btn_multiple.Location = new System.Drawing.Point(301, 110);
             this.btn_multiple.Name = "btn_multiple";
-            this.btn_multiple.Size = new System.Drawing.Size(179, 30);
+            this.btn_multiple.Size = new System.Drawing.Size(126, 25);
             this.btn_multiple.TabIndex = 4;
             this.btn_multiple.Text = "Multiple Verify";
             this.btn_multiple.UseVisualStyleBackColor = true;
@@ -144,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 462);
+            this.ClientSize = new System.Drawing.Size(477, 425);
             this.Controls.Add(this.lb_statusBar);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btn_multiple);

@@ -28,6 +28,29 @@ namespace Mine_Craft_Adminitrator
             InitializeComponent();
             CenterToScreen();
             lb_statusBar.Text = "";
+            var timer = new Timer();
+            timer.Tick += new EventHandler(Update);
+            timer.Interval = 100;
+            timer.Start();
+        }
+        void Update(object sender, EventArgs e)
+        {
+            if (checkOpenJSFile())
+            {
+                tb_jsFileUrl.Enabled = false;
+                tb_jsFileUrl.Text = Utils.Utilities.GetParenPath(tb_fileUrl.Text) + Item.item_name + ".js";
+            }
+            else
+            {
+
+            }
+        }
+        public bool checkOpenJSFile()
+        {
+            int id = cb_itemType.SelectedIndex;
+            if (id == 1 && Utils.Utilities.GetExtension(tb_fileUrl.Text).Equals(".zip")) //Mod
+                return true;
+            return false;
         }
         private void ItemDetail_Load(object sender, EventArgs e)
         {
@@ -176,6 +199,18 @@ namespace Mine_Craft_Adminitrator
         private void label13_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cb_itemType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Category> CategoryList = General.getCategoryByType((ItemType)cb_itemType.SelectedValue);
+            //Category
+            var categorySource = new BindingSource();
+            categorySource.DataSource = CategoryList;
+            cb_category.DataSource = categorySource;
+            cb_category.DisplayMember = "category_name";
+            cb_category.SelectedIndex = CategoryList.Count - 1;
+            cb_category.Refresh();
         }
     }
 }

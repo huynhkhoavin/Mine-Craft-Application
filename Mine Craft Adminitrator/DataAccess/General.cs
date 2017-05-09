@@ -67,6 +67,42 @@ namespace Mine_Craft_Adminitrator.DataAccess
             dr.Close();
             return categoryList;
         }
+        public static List<Category> getCategoryByType(ItemType itemType)
+        {
+            List<Category> originalList = getCategory();
+            List<Category> finalList = new List<Category>();
+
+            switch (itemType.type_id)
+            {
+                //Mod
+                case 1:
+                    {
+                        for (int i = 0; i < 10; i++)
+                        {
+                            finalList.Add(originalList[i]);
+                        }
+                        finalList.Add(originalList[12]);
+                        break;
+                    }
+                    // Skin
+                case 4:
+                    {
+                        finalList.Add(originalList[12]);
+                        for (int i = 14; i <= 19; i++)
+                        {
+                            finalList.Add(originalList[i-1]);
+                        }
+                        finalList.Add(originalList[11]);
+                        break;
+                    }
+                default:
+                    {
+                        finalList = originalList;
+                        break;
+                    }
+            }
+            return finalList;
+        }
         public static ErrorCode uploadItem(UploadItem uploadItem)
         {
             MySqlCommand cmd = new MySqlCommand("add_new_upload_item", new MySqlConnection(GetConnectionString()));
